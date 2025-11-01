@@ -1,0 +1,143 @@
+# Configuration for Chest X-Ray Classification with Transfer Learning and Ensemble
+
+# Data Configuration
+data:
+  dataset_name: "chest_xray"
+  data_dir: "data/raw/chest_xray"
+  image_size: [224, 224]
+  batch_size: 32
+  num_workers: 4
+  
+  # Data Split
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+  
+  # Data Augmentation
+  augmentation:
+    rotation_range: 10  # degrees
+    horizontal_flip: true
+    brightness_range: 0.1  # ±10%
+    zoom_range: 0.1  # 10%
+    
+  # Normalization (ImageNet stats)
+  normalization:
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+# Model Configuration
+models:
+  architectures:
+    - name: "efficientnet_b0"
+      params: 5300000
+      pretrained: true
+    - name: "resnet50"
+      params: 25600000
+      pretrained: true
+    - name: "densenet121"
+      params: 8000000
+      pretrained: true
+  
+  num_classes: 2
+  dropout: 0.5
+
+# Training Configuration
+training:
+  # Baseline Training
+  baseline:
+    epochs: 15
+    learning_rate: 0.001
+    optimizer: "adam"
+    loss_function: "binary_crossentropy"
+    freeze_backbone: true
+    
+  # Progressive Unfreezing
+  progressive_unfreezing:
+    stage_1:
+      epochs: 15
+      learning_rate: 0.0001
+      unfreeze_layers: 20
+    stage_2:
+      epochs: 15
+      learning_rate: 0.00001
+      unfreeze_layers: 50
+  
+  # Early Stopping
+  early_stopping:
+    patience: 5
+    monitor: "val_loss"
+    mode: "min"
+  
+  # Class Weights
+  use_class_weights: true
+  imbalance_threshold: 2.0
+
+# Ensemble Configuration
+ensemble:
+  methods:
+    - "simple_voting"
+    - "weighted_voting"
+  
+  # Weighted voting based on validation AUC
+  weight_metric: "auc"
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - "accuracy"
+    - "sensitivity"
+    - "specificity"
+    - "auc"
+    - "f1_score"
+    - "precision"
+    - "recall"
+  
+  # Robustness Testing
+  perturbations:
+    gaussian_noise:
+      sigma: [10, 20]
+    contrast_reduction:
+      levels: [0.5, 0.7]
+    rotation:
+      angles: [5, 10]
+  
+  # Statistical Tests
+  statistical_test: "paired_t_test"
+  significance_level: 0.05
+
+# Interpretability Configuration
+interpretability:
+  methods:
+    - "grad_cam"
+  target_layers:
+    efficientnet_b0: ["features.8"]
+    resnet50: ["layer4"]
+    densenet121: ["features.denseblock4"]
+
+# Paths
+paths:
+  models: "models"
+  results: "results"
+  figures: "results/figures"
+  metrics: "results/metrics"
+  logs: "results/logs"
+  checkpoints: "models/checkpoints"
+
+# Device Configuration
+device:
+  use_cuda: true  # Will try CUDA first, then MPS (Apple Silicon), then CPU
+  gpu_id: 0       # GPU ID for CUDA (ignored for MPS)
+
+# Reproducibility
+seed: 42
+
+# Project Information
+project:
+  name: "Chest X-Ray Classification with Transfer Learning and Ensemble Learning"
+  authors:
+    - name: "Jéssica A. L. de Macêdo"
+      affiliation: "Engenharia da Computação, CIn - UFPE"
+      email: "jalm2@cin.ufpe.br"
+    - name: "Matheus Borges Figueirôa"
+      affiliation: "Ciência da Computação, CIn - UFPE"
+      email: "mbf3@cin.ufpe.br"
