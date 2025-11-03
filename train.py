@@ -16,7 +16,8 @@ from src.utils import set_seed, load_config, create_directories, get_device, sav
 from src.data_loader import get_dataloaders
 from src.models import create_model
 from src.trainer import train_model
-from src.evaluation import evaluate, compute_confusion_matrix, plot_confusion_matrix, plot_roc_curve
+from src.trainer import evaluate
+from src.evaluation import compute_confusion_matrix, plot_confusion_matrix, plot_roc_curve
 
 
 def parse_args():

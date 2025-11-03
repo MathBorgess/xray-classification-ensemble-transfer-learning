@@ -4,14 +4,15 @@
 data:
   dataset_name: "chest_xray"
   data_dir: "data/raw/chest_xray"
+  use_existing_splits: true
   image_size: [224, 224]
   batch_size: 32
   num_workers: 4
   
-  # Data Split
-  train_split: 0.70
-  val_split: 0.15
-  test_split: 0.15
+  # Data Split (dados já estão separados na real)
+  # train_split: 0.70
+  # val_split: 0.15
+  # test_split: 0.15
   
   # Data Augmentation
   augmentation:
