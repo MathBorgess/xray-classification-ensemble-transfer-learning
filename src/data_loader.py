@@ -233,12 +233,19 @@ def get_dataloaders(
     batch_size = data_config.get('batch_size', 32)
     num_workers = data_config.get('num_workers', 4)
 
-    # Load data
-    image_paths, labels = load_data_from_directory(data_dir, config)
+    # Load data from existing train/val/test folders
+    train_dir = os.path.join(data_dir, 'train')
+    val_dir = os.path.join(data_dir, 'val')
+    test_dir = os.path.join(data_dir, 'test')
 
-    # Create splits
-    train_paths, val_paths, test_paths, train_labels, val_labels, test_labels = \
-        create_data_splits(image_paths, labels, config)
+    print(f"Loading data from:")
+    print(f"  Train: {train_dir}")
+    print(f"  Val: {val_dir}")
+    print(f"  Test: {test_dir}")
+
+    train_paths, train_labels = load_data_from_directory(train_dir, config)
+    val_paths, val_labels = load_data_from_directory(val_dir, config)
+    test_paths, test_labels = load_data_from_directory(test_dir, config)
 
     # Get transforms and augmentation
     train_transform = get_transforms(config, train=True)

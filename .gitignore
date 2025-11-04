@@ -205,3 +205,36 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Dados
+data/raw/
+data/processed/
+*.zip
+*.tar.gz
+
+# Modelos treinados
+models/checkpoints/
+*.pth
+*.pt
+
+# Resultados
+results/
+
+# Sistema
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+
+# Ambientes virtuais
+venv/
+env/
+dl_env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
