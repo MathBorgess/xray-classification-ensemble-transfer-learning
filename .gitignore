@@ -218,7 +218,7 @@ models/checkpoints/
 *.pt
 
 # Resultados
-results/
+# results/
 
 # Sistema
 .DS_Store
