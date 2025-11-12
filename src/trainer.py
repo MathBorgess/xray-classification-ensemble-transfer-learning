@@ -241,14 +241,43 @@ def train_model(
         lr=learning_rate
     )
 
-    # Use class weights if configured
-    if training_config.get('use_class_weights', True):
-        # Calculate from training data
+    # Setup loss function based on configuration
+    loss_config = training_config.get('loss', {})
+    loss_type = loss_config.get('type', 'weighted_ce')
+    
+    if loss_type == 'focal' or loss_type == 'class_balanced':
+        # Import Focal Loss
+        from src.losses import get_loss_function
+        
+        # Calculate class weights or samples per class
+        from src.data_loader import calculate_class_weights
+        train_labels = [label for _, label in train_loader.dataset]
+        
+        if loss_type == 'focal':
+            # Get class weights
+            class_weights = calculate_class_weights(train_labels).cpu().numpy().tolist()
+            criterion = get_loss_function(
+                loss_type='focal',
+                alpha=class_weights,
+                gamma=loss_config.get('focal_gamma', 2.0)
+            ).to(device)
+        else:  # class_balanced
+            # Count samples per class
+            samples_per_class = [train_labels.count(i) for i in range(2)]
+            criterion = get_loss_function(
+                loss_type='class_balanced',
+                samples_per_class=samples_per_class,
+                beta=loss_config.get('class_balanced_beta', 0.9999),
+                gamma=loss_config.get('focal_gamma', 2.0)
+            ).to(device)
+    elif training_config.get('use_class_weights', True):
+        # Use weighted cross-entropy (original)
         from src.data_loader import calculate_class_weights
         train_labels = [label for _, label in train_loader.dataset]
         class_weights = calculate_class_weights(train_labels).to(device)
         criterion = nn.CrossEntropyLoss(weight=class_weights)
     else:
+        # Standard cross-entropy
         criterion = nn.CrossEntropyLoss()
 
     # Early stopping
