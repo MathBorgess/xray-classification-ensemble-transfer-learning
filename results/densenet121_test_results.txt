@@ -1,0 +1,12 @@
+Model: densenet121
+==================================================
+
+Test Metrics:
+  loss: 1.1631
+  accuracy: 0.6891
+  auc: 0.9505
+  f1_score: 0.8008
+  precision: 0.6678
+  recall: 1.0000
+  sensitivity: 1.0000
+  specificity: 0.1709
