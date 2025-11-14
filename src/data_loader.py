@@ -101,15 +101,15 @@ def get_augmentation(config: Dict[str, Any]) -> A.Compose:
     data_config = config.get('data', {})
     aug_config = data_config.get('augmentation', {})
     image_size = tuple(data_config.get('image_size', [224, 224]))
-    
+
     # Check if advanced augmentation is enabled
     aug_type = aug_config.get('type', 'basic')
-    
+
     if aug_type == 'advanced':
         # Use advanced augmentation from advanced_augmentation module
         from src.advanced_augmentation import get_augmentation_advanced
         return get_augmentation_advanced(config, p=aug_config.get('probability', 0.8))
-    
+
     # Basic augmentation (original)
     rotation_range = aug_config.get('rotation_range', 10)
     horizontal_flip = aug_config.get('horizontal_flip', True)

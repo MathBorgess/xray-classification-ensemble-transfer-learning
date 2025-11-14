@@ -121,10 +121,11 @@ O projeto completou a **implementação de todas as correções fundamentais** i
 
 > **⚠️ ATUALIZAÇÃO IMPORTANTE (12/11/2025):**  
 > Identificados gaps críticos que devem ser corrigidos ANTES do ensemble:
+>
 > 1. Dataset de validação muito pequeno (16 amostras)
 > 2. Especificidade extremamente baixa (12-48%)
 > 3. Falta de cross-validation
-> 
+>
 > **Novo Plano:** Implementar correções fundamentais primeiro (ver `PRE_ENSEMBLE_FIXES.md`),  
 > depois prosseguir com ensemble. Isso garante base estatisticamente sólida.
 
@@ -134,29 +135,34 @@ O projeto completou a **implementação de todas as correções fundamentais** i
 **Objetivo:** Resolver gaps críticos antes do ensemble
 
 #### 0.1. Cross-Validation (K=5) - Dias 1-2
+
 - Implementar `src/cross_validation.py`
 - Treinar modelos com 5-fold stratified CV
 - Calcular média ± std ± CI 95%
 - **Output:** Métricas robustas com intervalos de confiança
 
 #### 0.2. Threshold Optimization - Dia 3
+
 - Implementar `src/threshold_optimization.py`
 - Otimizar threshold usando Youden's J, F1, Balanced
 - **Target:** Especificidade ≥ 60%
 - **Output:** Thresholds otimizados para cada modelo
 
 #### 0.3. Advanced Augmentation + Focal Loss - Dias 4-5
+
 - Atualizar augmentation (elastic deformation, CLAHE, noise)
 - Implementar Focal Loss (`src/losses.py`)
 - Re-treinar EfficientNetB0 com melhorias
 - **Output:** Especificidade base melhorada em 5-10%
 
 #### 0.4. Test-Time Augmentation - Dia 6
+
 - Implementar `src/tta.py`
 - Testar TTA em modelos existentes
 - **Output:** Redução de variância
 
 #### 0.5. Consolidação - Dias 7-10
+
 - Validar todas as correções
 - Gerar relatório consolidado
 - Preparar base para ensemble

@@ -19,11 +19,13 @@ python3 retrain_with_improvements.py --quick
 ```
 
 Este comando executa:
+
 - ✅ Cross-Validation (K=5)
 - ✅ Threshold Optimization
 - ✅ Test-Time Augmentation
 
 **Tempo estimado:**
+
 - Modo rápido: ~3-4 horas
 - Modo completo: ~8-10 horas
 
@@ -38,16 +40,19 @@ python3 -m src.cross_validation --config configs/config.yaml
 ```
 
 Ou apenas EfficientNetB0:
+
 ```bash
 python3 -m src.cross_validation --quick
 ```
 
 **Resultado esperado:**
+
 - 5 modelos por arquitetura (folds 1-5)
 - Métricas com intervalos de confiança (95% CI)
 - Especificidade esperada: 40-60% (melhoria de ~30%)
 
 **Saída:**
+
 ```
 models/cv_models/
 ├── efficientnet_b0_fold1.pth
@@ -100,6 +105,7 @@ print(f"Specificity: {target_result['metrics']['specificity']:.4f}")
 ```
 
 **Resultado esperado:**
+
 - Threshold otimizado para Especificidade ≥ 60%
 - Gráficos ROC com pontos ótimos
 - Comparação de métodos
@@ -139,6 +145,7 @@ for key in ['accuracy', 'auc', 'specificity']:
 ```
 
 **Resultado esperado:**
+
 - Melhoria de 1-3% em todas as métricas
 - Redução de variância nas predições
 
@@ -175,12 +182,14 @@ python3 retrain_with_improvements.py --models efficientnet_b0 resnet50
 Após executar todas as etapas, verifique:
 
 - [ ] **Cross-Validation**
+
   - [ ] 5 modelos por arquitetura gerados
   - [ ] Intervalos de confiança (CI) calculados
   - [ ] CI width < 5% para métricas principais
   - [ ] Especificidade média ≥ 40%
 
 - [ ] **Threshold Optimization**
+
   - [ ] Threshold otimizado salvo para cada modelo
   - [ ] Especificidade ≥ 60% alcançada
   - [ ] Sensibilidade mantida ≥ 90%
@@ -202,23 +211,23 @@ cv_file = Path('results/cross_validation_results.json')
 if cv_file.exists():
     with open(cv_file) as f:
         cv_results = json.load(f)
-    
+
     print("✅ Cross-Validation Results:")
     for model, metrics in cv_results.items():
         spec = metrics['mean_metrics']['specificity']
         spec_ci = metrics['ci_95_metrics']['specificity']
         ci_width = spec_ci[1] - spec_ci[0]
-        
+
         print(f"  {model}:")
         print(f"    Specificity: {spec:.4f} ± {ci_width/2:.4f}")
         print(f"    CI Width: {ci_width:.4f}")
-        
+
         # Validation
         if spec >= 0.40:
             print("    ✅ Specificity target met (≥40%)")
         else:
             print("    ⚠️  Specificity below target")
-        
+
         if ci_width < 0.05:
             print("    ✅ CI width acceptable (<5%)")
         else:
@@ -231,16 +240,16 @@ print(f"\n✅ Threshold Optimization: {len(thresh_files)} models")
 for thresh_file in thresh_files:
     with open(thresh_file) as f:
         thresh_results = json.load(f)
-    
+
     if 'target_specificity' in thresh_results:
         result = thresh_results['target_specificity']
         spec = result['metrics']['specificity']
         sens = result['metrics']['sensitivity']
-        
+
         print(f"  {thresh_file.stem}:")
         print(f"    Specificity: {spec:.4f}")
         print(f"    Sensitivity: {sens:.4f}")
-        
+
         if spec >= 0.60:
             print("    ✅ Target specificity met (≥60%)")
         else:
@@ -252,6 +261,7 @@ for thresh_file in thresh_files:
 ## 🎯 Metas de Sucesso
 
 ### Antes das Correções
+
 ```
 Dataset Validação:    16 amostras
 Especificidade:       12-48%
@@ -260,6 +270,7 @@ Intervalo Confiança:  ❌ Ausente
 ```
 
 ### Após as Correções (Esperado)
+
 ```
 Dataset Validação:    ~1000 samples (5-fold CV)
 Especificidade:       ≥ 60%
@@ -269,24 +280,24 @@ Intervalo Confiança:  ✅ 95% CI
 
 ### Critérios de Aceitação
 
-| Métrica | Meta | Status |
-|---------|------|--------|
-| Especificidade | ≥ 60% | 🎯 |
-| Sensibilidade | ≥ 90% | 🎯 |
-| Balanced Accuracy | ≥ 75% | 🎯 |
-| AUC | ≥ 0.85 | 🎯 |
-| CI Width | < 5% | 🎯 |
+| Métrica           | Meta   | Status |
+| ----------------- | ------ | ------ |
+| Especificidade    | ≥ 60%  | 🎯     |
+| Sensibilidade     | ≥ 90%  | 🎯     |
+| Balanced Accuracy | ≥ 75%  | 🎯     |
+| AUC               | ≥ 0.85 | 🎯     |
+| CI Width          | < 5%   | 🎯     |
 
 ---
 
 ## ⏱️ Cronograma de Execução
 
-| Etapa | Duração | Descrição |
-|-------|---------|-----------|
-| Cross-Validation | 6-8h | 3 modelos × 5 folds × ~30min/fold |
-| Threshold Optimization | 30min | Análise de curvas ROC |
-| TTA Evaluation | 1-2h | 5 augmentations por imagem |
-| **Total** | **8-11h** | Pode rodar overnight |
+| Etapa                  | Duração   | Descrição                         |
+| ---------------------- | --------- | --------------------------------- |
+| Cross-Validation       | 6-8h      | 3 modelos × 5 folds × ~30min/fold |
+| Threshold Optimization | 30min     | Análise de curvas ROC             |
+| TTA Evaluation         | 1-2h      | 5 augmentations por imagem        |
+| **Total**              | **8-11h** | Pode rodar overnight              |
 
 ---
 

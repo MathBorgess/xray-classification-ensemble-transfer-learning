@@ -244,18 +244,19 @@ def train_model(
     # Setup loss function based on configuration
     loss_config = training_config.get('loss', {})
     loss_type = loss_config.get('type', 'weighted_ce')
-    
+
     if loss_type == 'focal' or loss_type == 'class_balanced':
         # Import Focal Loss
         from src.losses import get_loss_function
-        
+
         # Calculate class weights or samples per class
         from src.data_loader import calculate_class_weights
         train_labels = [label for _, label in train_loader.dataset]
-        
+
         if loss_type == 'focal':
             # Get class weights
-            class_weights = calculate_class_weights(train_labels).cpu().numpy().tolist()
+            class_weights = calculate_class_weights(
+                train_labels).cpu().numpy().tolist()
             criterion = get_loss_function(
                 loss_type='focal',
                 alpha=class_weights,

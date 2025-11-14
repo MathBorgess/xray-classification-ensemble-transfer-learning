@@ -11,9 +11,11 @@
 ## 🎯 Módulos Implementados
 
 ### 1. Cross-Validation ✅
+
 **Arquivo:** `src/cross_validation.py`
 
 **Funcionalidades:**
+
 - ✅ Stratified K-Fold (K=5)
 - ✅ Classe `CrossValidator`
 - ✅ Método `split_data()` - cria splits estratificados
@@ -24,12 +26,14 @@
 - ✅ Comparação entre modelos
 
 **Execução:**
+
 ```bash
 python3 -m src.cross_validation --config configs/config.yaml
 python3 -m src.cross_validation --quick  # Apenas EfficientNetB0
 ```
 
 **Saída:**
+
 - `models/cv_models/{model}_fold{1-5}.pth`
 - `models/cv_models/{model}_cv_summary.json`
 - `results/cross_validation_results.json`
@@ -37,9 +41,11 @@ python3 -m src.cross_validation --quick  # Apenas EfficientNetB0
 ---
 
 ### 2. Threshold Optimization ✅
+
 **Arquivo:** `src/threshold_optimization.py`
 
 **Funcionalidades:**
+
 - ✅ 4 métodos de otimização:
   - Youden's J Statistic (Sens + Spec - 1)
   - F1-Score Maximization
@@ -52,6 +58,7 @@ python3 -m src.cross_validation --quick  # Apenas EfficientNetB0
 - ✅ Exportação de resultados JSON
 
 **Uso:**
+
 ```python
 from src.threshold_optimization import optimize_threshold_for_model
 
@@ -62,16 +69,20 @@ results = optimize_threshold_for_model(
 ```
 
 **Saída:**
+
 - `results/improved_training/threshold_{model}/threshold_optimization.png`
 - `results/improved_training/{model}_optimal_thresholds.json`
 
 ---
 
 ### 3. Advanced Augmentation ✅
+
 **Arquivo:** `src/advanced_augmentation.py`
 
 **Funcionalidades:**
+
 - ✅ 10+ tipos de augmentação:
+
   1. ShiftScaleRotate
   2. HorizontalFlip
   3. ElasticTransform ⭐ (novo)
@@ -91,20 +102,23 @@ results = optimize_threshold_for_model(
 - ✅ Integração com `data_loader.py`
 
 **Ativação:**
+
 ```yaml
 # configs/config.yaml
 data:
   augmentation:
-    type: "advanced"  # Ativa augmentação avançada
+    type: "advanced" # Ativa augmentação avançada
     probability: 0.8
 ```
 
 ---
 
 ### 4. Focal Loss & Class-Balanced Loss ✅
+
 **Arquivo:** `src/losses.py`
 
 **Funcionalidades:**
+
 - ✅ Classe `FocalLoss`
   - FL(p_t) = -α(1-p_t)^γ log(p_t)
   - Parâmetros: alpha (weights), gamma (focusing)
@@ -116,21 +130,24 @@ data:
 - ✅ Integração com `trainer.py`
 
 **Ativação:**
+
 ```yaml
 # configs/config.yaml
 training:
   loss:
-    type: "focal"  # ou "class_balanced"
+    type: "focal" # ou "class_balanced"
     focal_gamma: 2.0
-    focal_alpha: null  # Auto-calculate
+    focal_alpha: null # Auto-calculate
 ```
 
 ---
 
 ### 5. Test-Time Augmentation (TTA) ✅
+
 **Arquivo:** `src/tta.py`
 
 **Funcionalidades:**
+
 - ✅ Classe `TTAWrapper`
 - ✅ Método `predict()` - predição com TTA para 1 imagem
 - ✅ Método `predict_batch()` - predição em batch
@@ -140,6 +157,7 @@ training:
 - ✅ Média de predições
 
 **Uso:**
+
 ```python
 from src.tta import TTAWrapper
 
@@ -150,9 +168,11 @@ prediction = tta.predict(image)
 ---
 
 ### 6. Re-training Script Integrado ✅
+
 **Arquivo:** `retrain_with_improvements.py`
 
 **Funcionalidades:**
+
 - ✅ Execução automatizada de todas as fases
 - ✅ Cross-Validation (Fase 1)
 - ✅ Threshold Optimization (Fase 2)
@@ -162,6 +182,7 @@ prediction = tta.predict(image)
 - ✅ Modo quick (apenas EfficientNetB0)
 
 **Execução:**
+
 ```bash
 python3 retrain_with_improvements.py
 python3 retrain_with_improvements.py --quick
@@ -173,6 +194,7 @@ python3 retrain_with_improvements.py --skip-cv
 ### 7. Atualizações de Infraestrutura ✅
 
 #### ✅ `configs/config.yaml` atualizado:
+
 - ✅ Seção `augmentation.advanced` adicionada
 - ✅ Seção `training.loss` adicionada
 - ✅ Seção `evaluation.cross_validation` adicionada
@@ -180,10 +202,12 @@ python3 retrain_with_improvements.py --skip-cv
 - ✅ Seção `evaluation.test_time_augmentation` adicionada
 
 #### ✅ `src/data_loader.py` atualizado:
+
 - ✅ `get_augmentation()` suporta augmentação avançada
 - ✅ Detecção automática de `type: "advanced"`
 
 #### ✅ `src/trainer.py` atualizado:
+
 - ✅ Suporte para Focal Loss
 - ✅ Suporte para Class-Balanced Loss
 - ✅ Detecção automática baseada em config
@@ -195,6 +219,7 @@ python3 retrain_with_improvements.py --skip-cv
 ### Guias de Execução ✅
 
 1. **EXECUTION_GUIDE.md** (~800 linhas)
+
    - Quick start
    - Execução passo-a-passo
    - Scripts de validação
@@ -202,19 +227,23 @@ python3 retrain_with_improvements.py --skip-cv
    - Metas de sucesso
 
 2. **PRE_ENSEMBLE_FIXES.md** (~600 linhas)
+
    - Análise completa dos gaps
    - Código detalhado
    - Cronograma de implementação
 
 3. **FIXES_SUMMARY.md** (~400 linhas)
+
    - Sumário visual
    - Tabelas comparativas
 
 4. **ROADMAP_VISUAL.md** (~500 linhas)
+
    - Roadmap com ASCII art
    - Fluxogramas
 
 5. **START_HERE.md** (~250 linhas)
+
    - Ponto de entrada
    - Ordem de leitura
 
@@ -228,15 +257,15 @@ python3 retrain_with_improvements.py --skip-cv
 
 ### Comparação Antes vs Depois
 
-| Aspecto | Antes | Depois |
-|---------|-------|--------|
-| **Validação** | 16 amostras | ~1000 amostras (5-fold CV) |
-| **Especificidade** | 12-48% | Target: ≥60% |
-| **Intervalos Confiança** | ❌ Ausente | ✅ 95% CI |
-| **Augmentação** | 4 tipos básicos | 12+ tipos avançados |
-| **Loss Function** | Cross-Entropy ponderado | Focal Loss |
-| **Test-Time Aug** | ❌ Ausente | ✅ 5 augmentações |
-| **Threshold** | Fixed 0.5 | ✅ Otimizado (4 métodos) |
+| Aspecto                  | Antes                   | Depois                     |
+| ------------------------ | ----------------------- | -------------------------- |
+| **Validação**            | 16 amostras             | ~1000 amostras (5-fold CV) |
+| **Especificidade**       | 12-48%                  | Target: ≥60%               |
+| **Intervalos Confiança** | ❌ Ausente              | ✅ 95% CI                  |
+| **Augmentação**          | 4 tipos básicos         | 12+ tipos avançados        |
+| **Loss Function**        | Cross-Entropy ponderado | Focal Loss                 |
+| **Test-Time Aug**        | ❌ Ausente              | ✅ 5 augmentações          |
+| **Threshold**            | Fixed 0.5               | ✅ Otimizado (4 métodos)   |
 
 ---
 
@@ -268,6 +297,7 @@ xray-classification-ensemble-transfer-learning/
 ```
 
 **Estatísticas de Código:**
+
 - **Código Python Novo:** ~1,950 linhas
 - **Código Python Atualizado:** ~150 linhas
 - **Documentação Nova:** ~3,850 linhas
@@ -307,7 +337,7 @@ with open('results/cross_validation_results.json') as f:
 for model, metrics in cv_results.items():
     spec = metrics['mean_metrics']['specificity']
     print(f"{model}: Specificity = {spec:.4f}")
-    
+
 # Meta: Especificidade ≥ 0.40 (melhoria de ~30%)
 ```
 
@@ -340,11 +370,11 @@ with open('results/improved_training/training_summary.json') as f:
 for model in ['efficientnet_b0', 'resnet50', 'densenet121']:
     if model in summary.get('tta_evaluation', {}):
         tta_data = summary['tta_evaluation'][model]
-        
+
         std_acc = tta_data['without_tta']['accuracy']
         tta_acc = tta_data['with_tta']['accuracy']
         improvement = tta_acc - std_acc
-        
+
         print(f"{model}: {std_acc:.4f} → {tta_acc:.4f} (+{improvement:.4f})")
 
 # Meta: Melhoria de 1-3% em accuracy/AUC
@@ -389,13 +419,13 @@ python ensemble.py --config configs/config.yaml
 
 ### EfficientNetB0 (Modelo Baseline)
 
-| Métrica | Antes | Esperado Após | Melhoria |
-|---------|-------|---------------|----------|
-| Accuracy | 80.29% | 82-85% | +2-5% |
-| Especificidade | 47.86% | 60-65% | +12-17% |
-| Sensibilidade | 95.26% | 95%+ | Mantido |
-| AUC | 0.9761 | 0.98+ | Mantido |
-| F1-Score | 0.8697 | 0.87-0.89 | +1-2% |
+| Métrica        | Antes  | Esperado Após | Melhoria |
+| -------------- | ------ | ------------- | -------- |
+| Accuracy       | 80.29% | 82-85%        | +2-5%    |
+| Especificidade | 47.86% | 60-65%        | +12-17%  |
+| Sensibilidade  | 95.26% | 95%+          | Mantido  |
+| AUC            | 0.9761 | 0.98+         | Mantido  |
+| F1-Score       | 0.8697 | 0.87-0.89     | +1-2%    |
 
 ### ResNet50 & DenseNet121
 
@@ -406,18 +436,21 @@ Melhorias proporcionais esperadas.
 ## 🐛 Troubleshooting
 
 ### CUDA Out of Memory
+
 ```yaml
 # configs/config.yaml
 data:
-  batch_size: 16  # Reduzir de 32
+  batch_size: 16 # Reduzir de 32
 ```
 
 ### Importação não encontrada
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### Cross-Validation muito lenta
+
 ```bash
 # Usar modo quick para testar
 python3 retrain_with_improvements.py --quick
@@ -439,6 +472,7 @@ python3 retrain_with_improvements.py --quick
 ## ✅ Checklist Final
 
 ### Antes de Executar
+
 - [ ] Python 3.8+ instalado
 - [ ] Dependências instaladas (`requirements.txt`)
 - [ ] Dataset disponível em `data/raw/chest_xray/`
@@ -446,11 +480,13 @@ python3 retrain_with_improvements.py --quick
 - [ ] Espaço em disco ≥ 10GB
 
 ### Durante Execução
+
 - [ ] Monitorar progresso (logs)
 - [ ] Verificar uso de GPU/memória
 - [ ] Backup de modelos importantes
 
 ### Após Execução
+
 - [ ] Validar métricas
 - [ ] Verificar gráficos gerados
 - [ ] Documentar resultados
@@ -463,16 +499,19 @@ python3 retrain_with_improvements.py --quick
 ### Seções do Artigo Beneficiadas
 
 1. **Metodologia:**
+
    - ✅ Cross-validation com 5 folds
    - ✅ Augmentação avançada específica para imaging
    - ✅ Focal Loss para desbalanceamento
 
 2. **Resultados:**
+
    - ✅ Intervalos de confiança (95% CI)
    - ✅ Especificidade clinicamente útil (≥60%)
    - ✅ Análise de threshold optimization
 
 3. **Discussão:**
+
    - ✅ Robustez estatística
    - ✅ Test-Time Augmentation
    - ✅ Comparação rigorosa de métodos
@@ -492,6 +531,7 @@ Todos os módulos implementados e testados.
 Pronto para execução e validação.
 
 **Próximo comando:**
+
 ```bash
 python3 retrain_with_improvements.py --quick
 ```
