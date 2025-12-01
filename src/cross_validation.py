@@ -171,6 +171,18 @@ class CrossValidator:
         }
 
         for fold_num, (train_idx, val_idx) in enumerate(splits):
+            
+            fold_model_path = os.path.join(
+                save_dir, f'{model_name}_fold{fold_num + 1}.pth'
+            )
+
+            #codigo adicional para identificar checkpoints
+            if os.path.exists(fold_model_path):
+                print(
+                    f"\n✅ FOLD {fold_num + 1}/{self.n_splits} ({model_name}) já concluído. Pulando treinamento.")
+                continue
+            #fim do codigo adicional
+            
             # Create data loaders for this fold
             train_paths = [image_paths[i] for i in train_idx]
             train_labels_fold = [labels[i] for i in train_idx]
@@ -213,9 +225,6 @@ class CrossValidator:
             )
 
             # Save fold model
-            fold_model_path = os.path.join(
-                save_dir, f'{model_name}_fold{fold_num + 1}.pth'
-            )
             torch.save(model.state_dict(), fold_model_path)
 
             # Collect metrics
