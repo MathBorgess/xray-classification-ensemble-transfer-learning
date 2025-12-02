@@ -11,11 +11,23 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from sklearn.metrics import roc_curve, auc, confusion_matrix, f1_score
-from typing import Dict, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
+# >>> INÍCIO DOS IMPORTS ADICIONAIS PARA EXECUÇÃO <<<
+import argparse
+import os
+import json
+from src.utils import load_config, get_device
+from src.models import create_model
+from src.data_loader import load_data_from_directory, ChestXRayDataset, get_transforms
+# >>> FIM DOS IMPORTS ADICIONAIS PARA EXECUÇÃO <<<
 
+import matplotlib
+# Configura o backend do Matplotlib para 'Agg'
+# 'Agg' é um backend não-interativo que cria arquivos (PNG, PDF, etc.)
+matplotlib.use('Agg')
 
 def find_optimal_threshold(
     y_true: np.ndarray,
@@ -42,11 +54,9 @@ def find_optimal_threshold(
         Tuple of (optimal_threshold, metrics_at_threshold)
     """
     fpr, tpr, thresholds = roc_curve(y_true, y_probs)
-
     # Calculate specificity
     specificity = 1 - fpr
     sensitivity = tpr
-
     best_threshold = 0.5
     best_metrics = {}
 
@@ -55,13 +65,11 @@ def find_optimal_threshold(
         j_scores = sensitivity + specificity - 1
         best_idx = np.argmax(j_scores)
         best_threshold = thresholds[best_idx]
-
         best_metrics = {
             'sensitivity': sensitivity[best_idx],
             'specificity': specificity[best_idx],
             'youden_j': j_scores[best_idx]
         }
-
     elif method == 'f1':
         # Maximize F1 score
         f1_scores = []
@@ -69,31 +77,25 @@ def find_optimal_threshold(
             y_pred = (y_probs >= threshold).astype(int)
             f1 = f1_score(y_true, y_pred)
             f1_scores.append(f1)
-
         best_idx = np.argmax(f1_scores)
         best_threshold = thresholds[best_idx]
-
         best_metrics = {
             'sensitivity': sensitivity[best_idx],
             'specificity': specificity[best_idx],
             'f1_score': f1_scores[best_idx]
         }
-
     elif method == 'balanced':
         # Maximize balanced accuracy
         balanced_acc = (sensitivity + specificity) / 2
         best_idx = np.argmax(balanced_acc)
         best_threshold = thresholds[best_idx]
-
         best_metrics = {
             'sensitivity': sensitivity[best_idx],
             'specificity': specificity[best_idx],
             'balanced_accuracy': balanced_acc[best_idx]
         }
-
     elif method == 'target_specificity':
         # Find threshold that achieves target specificity while maximizing sensitivity
-        # Find indices where specificity >= target
         valid_indices = np.where(specificity >= target_specificity)[0]
 
         if len(valid_indices) > 0:
@@ -161,8 +163,7 @@ def evaluate_with_threshold(
         for images, labels in dataloader:
             images = images.to(device)
             outputs = model(images)
-            probs = torch.softmax(outputs, dim=1)[
-                :, 1]  # Probability of class 1
+            probs = torch.softmax(outputs, dim=1)[:, 1]  # Probability of class 1
 
             all_probs.extend(probs.cpu().numpy())
             all_labels.extend(labels.numpy())
@@ -250,6 +251,7 @@ def optimize_threshold_for_model(
 
     for method in methods:
         print(f"\nOptimizing threshold using: {method}")
+        # NOTE: target_specificity is hardcoded to 0.60 in the config
         threshold, metrics = find_optimal_threshold(
             all_labels, all_probs, method=method,
             target_specificity=0.60
@@ -264,9 +266,10 @@ def optimize_threshold_for_model(
         print(f"  Sensitivity: {metrics['sensitivity']:.4f}")
         print(f"  Specificity: {metrics['specificity']:.4f}")
 
-    # Plot comparison
+    # Plot comparison (Requires the visualization module to be executed)
     if save_dir:
-        plot_threshold_analysis(all_labels, all_probs, results, save_dir)
+        # A chamada da função para gerar o plot PNG:
+        plot_threshold_analysis(all_labels, all_labels, results, save_dir)
 
     return results
 
@@ -325,7 +328,7 @@ def plot_threshold_analysis(
     for method, result in optimization_results.items():
         thresh = result['threshold']
         ax.axvline(thresh, color=colors.get(method, 'black'),
-                   linestyle='--', alpha=0.5, label=f'{method}')
+                    linestyle='--', alpha=0.5, label=f'{method}')
 
     ax.set_xlabel('Threshold')
     ax.set_ylabel('Score')
@@ -337,9 +340,9 @@ def plot_threshold_analysis(
     ax = axes[1, 0]
     methods = list(optimization_results.keys())
     sens_values = [optimization_results[m]['metrics']['sensitivity']
-                   for m in methods]
+                    for m in methods]
     spec_values = [optimization_results[m]['metrics']['specificity']
-                   for m in methods]
+                    for m in methods]
 
     x = np.arange(len(methods))
     width = 0.35
@@ -400,6 +403,115 @@ def plot_threshold_analysis(
     print(f"\n✅ Plot saved to: {save_dir}/threshold_optimization.png")
 
 
+# --- INÍCIO DO CÓDIGO DE EXECUÇÃO PRINCIPAL (FALTANDO) ---
+def run_optimization_experiment(config: Dict):
+    """
+    Carrega modelos e executa a otimização de threshold para cada fold de cada modelo.
+    """
+    device = get_device(config)
+    save_dir = config.get('paths', {}).get('results', 'results/')
+    
+    # 1. Carregar dados de validação (necessário para calcular o threshold)
+    data_dir = config.get('data', {}).get('data_dir', 'data/raw/chest_xray')
+    val_dir = os.path.join(data_dir, 'val')
+
+    print("Loading validation data for threshold optimization...")
+    val_paths, val_labels = load_data_from_directory(val_dir, config)
+    val_transform = get_transforms(config, train=False)
+    val_dataset = ChestXRayDataset(val_paths, val_labels, transform=val_transform, augmentation=None)
+    
+    batch_size = config.get('data', {}).get('batch_size', 32)
+    num_workers = config.get('data', {}).get('num_workers', 4)
+
+    val_loader = DataLoader(
+        val_dataset, batch_size=batch_size,
+        shuffle=False, num_workers=num_workers, pin_memory=True
+    )
+    
+    # 2. Iterar sobre todos os modelos (EfficientNet, ResNet, DenseNet)
+    models_to_optimize = ['efficientnet_b0', 'resnet50', 'densenet121'] # Assumindo 3 modelos
+    
+    optimized_results = {}
+    
+    for model_name in models_to_optimize:
+        model_results = {}
+        
+        for fold_num in range(config.get('evaluation', {}).get('n_splits', 5)):
+            fold_index = fold_num + 1
+            print(f"\nProcessing {model_name} Fold {fold_index}...")
+            
+            # Carregar o modelo (Checkpoint)
+            try:
+                model = create_model(model_name, config)
+            except Exception as e:
+                print(f"Erro ao criar o modelo {model_name}: {e}")
+                continue # Pula para o próximo modelo
+
+            checkpoint_path = os.path.join('models/cv_models', f'{model_name}_fold{fold_index}.pth')
+            
+            if not os.path.exists(checkpoint_path):
+                print(f"⚠️ Checkpoint não encontrado para {model_name} Fold {fold_index}. Pulando.")
+                continue
+
+            try:
+                model.load_state_dict(torch.load(checkpoint_path, map_location=device))
+            except Exception as e:
+                print(f"Erro ao carregar o estado do modelo {model_name} Fold {fold_index}: {e}")
+                continue
+                
+            model = model.to(device)
+            
+            # Otimizar o threshold
+            threshold_results = optimize_threshold_for_model(
+                model, 
+                val_loader, 
+                device, 
+                methods=['youden', 'f1', 'balanced', 'target_specificity'],
+                save_dir=os.path.join(save_dir, 'figures', 'threshold_analysis', model_name, f'fold_{fold_index}')
+            )
+            
+            model_results[f'fold_{fold_index}'] = threshold_results
+            
+            
+        optimized_results[model_name] = model_results
+
+    # 3. Salvar os resultados globais (Thresholds Ótimos)
+    output_path = os.path.join(save_dir, 'optimal_thresholds.json')
+    with open(output_path, 'w') as f:
+        # Serialização correta de resultados (garantindo que tipos numpy sejam convertidos para Python)
+        def convert_numpy(obj):
+            if isinstance(obj, np.generic):
+                return obj.item()
+            raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
+
+        json.dump(optimized_results, f, indent=4, default=convert_numpy)
+    
+    print(f"\n✅ Otimização de Thresholds concluída e salva em: {output_path}")
+
+    # 4. Geração de plots de resumo deve ser feita separadamente se o loop for interrompido
+    
+    return optimized_results
+
+
 if __name__ == '__main__':
-    print("Threshold Optimization Module")
-    print("Use this module by importing and calling optimize_threshold_for_model()")
+    parser = argparse.ArgumentParser(description='Run threshold optimization')
+    parser.add_argument('--config', type=str, default='configs/config.yaml',
+                        help='Path to config file')
+    args = parser.parse_args()
+
+    # Define a variável OMP para ignorar o erro de MKL/OpenMP
+    os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
+    
+    config = load_config(args.config)
+    
+    # Adiciona uma checagem para garantir que o número de splits está correto
+    if 'evaluation' not in config or 'n_splits' not in config['evaluation']:
+        print("AVISO: Adicionando 'n_splits: 5' à configuração. Por favor, verifique 'configs/config.yaml'.")
+        config.setdefault('evaluation', {})['n_splits'] = 5
+
+    try:
+        run_optimization_experiment(config)
+    except Exception as e:
+        print(f"\n❌ ERRO FATAL DURANTE A OTIMIZAÇÃO: {e}")
+        print("Verifique se as dependências (src.models, src.data_loader) estão corretas.")
+# --- FIM DO CÓDIGO DE EXECUÇÃO PRINCIPAL (FALTANDO) ---
