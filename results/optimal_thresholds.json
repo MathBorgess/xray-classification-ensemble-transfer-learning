@@ -1,0 +1,938 @@
+{
+    "efficientnet_b0": {
+        "fold_1": {
+            "youden": {
+                "threshold": 0.34360218048095703,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "youden_j": 0.875,
+                    "threshold": 0.34360218048095703,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "f1": {
+                "threshold": 0.34360218048095703,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "f1_score": 0.9333333333333333,
+                    "threshold": 0.34360218048095703,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "balanced": {
+                "threshold": 0.34360218048095703,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 0.9375,
+                    "threshold": 0.34360218048095703,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.2710340917110443,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.625,
+                    "target_met": true,
+                    "threshold": 0.2710340917110443,
+                    "true_negatives": 5,
+                    "false_positives": 3,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.7272727272727273,
+                    "negative_predictive_value": 1.0
+                }
+            }
+        },
+        "fold_2": {
+            "youden": {
+                "threshold": 0.44278785586357117,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "youden_j": 0.875,
+                    "threshold": 0.44278785586357117,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "f1": {
+                "threshold": 0.3819506764411926,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.875,
+                    "f1_score": 0.9411764705882353,
+                    "threshold": 0.3819506764411926,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.8888888888888888,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.44278785586357117,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 0.9375,
+                    "threshold": 0.44278785586357117,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.3819506764411926,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.875,
+                    "target_met": true,
+                    "threshold": 0.3819506764411926,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.8888888888888888,
+                    "negative_predictive_value": 1.0
+                }
+            }
+        },
+        "fold_3": {
+            "youden": {
+                "threshold": 0.1550833284854889,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.75,
+                    "youden_j": 0.75,
+                    "threshold": 0.1550833284854889,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.8,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "f1": {
+                "threshold": 0.1550833284854889,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.75,
+                    "f1_score": 0.8888888888888888,
+                    "threshold": 0.1550833284854889,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.8,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.1550833284854889,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.75,
+                    "balanced_accuracy": 0.875,
+                    "threshold": 0.1550833284854889,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.8,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.1550833284854889,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.75,
+                    "target_met": true,
+                    "threshold": 0.1550833284854889,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.8,
+                    "negative_predictive_value": 1.0
+                }
+            }
+        },
+        "fold_4": {
+            "youden": {
+                "threshold": 0.5614022016525269,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 1.0,
+                    "youden_j": 1.0,
+                    "threshold": 0.5614022016525269,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "f1": {
+                "threshold": 0.5614022016525269,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 1.0,
+                    "f1_score": 1.0,
+                    "threshold": 0.5614022016525269,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.5614022016525269,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 1.0,
+                    "threshold": 0.5614022016525269,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.5614022016525269,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 1.0,
+                    "target_met": true,
+                    "threshold": 0.5614022016525269,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 1.0
+                }
+            }
+        },
+        "fold_5": {
+            "youden": {
+                "threshold": 0.6945873498916626,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.625,
+                    "youden_j": 0.625,
+                    "threshold": 0.6945873498916626,
+                    "true_negatives": 5,
+                    "false_positives": 3,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.7272727272727273,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "f1": {
+                "threshold": 0.6945873498916626,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.625,
+                    "f1_score": 0.8421052631578947,
+                    "threshold": 0.6945873498916626,
+                    "true_negatives": 5,
+                    "false_positives": 3,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.7272727272727273,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.6945873498916626,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.625,
+                    "balanced_accuracy": 0.8125,
+                    "threshold": 0.6945873498916626,
+                    "true_negatives": 5,
+                    "false_positives": 3,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.7272727272727273,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.6945873498916626,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.625,
+                    "target_met": true,
+                    "threshold": 0.6945873498916626,
+                    "true_negatives": 5,
+                    "false_positives": 3,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.7272727272727273,
+                    "negative_predictive_value": 1.0
+                }
+            }
+        }
+    },
+    "resnet50": {
+        "fold_1": {
+            "youden": {
+                "threshold": 0.8692653775215149,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "youden_j": 0.875,
+                    "threshold": 0.8692653775215149,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "f1": {
+                "threshold": 0.8692653775215149,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "f1_score": 0.9333333333333333,
+                    "threshold": 0.8692653775215149,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "balanced": {
+                "threshold": 0.8692653775215149,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 0.9375,
+                    "threshold": 0.8692653775215149,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.8888888888888888
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.768698513507843,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.75,
+                    "target_met": true,
+                    "threshold": 0.768698513507843,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.8,
+                    "negative_predictive_value": 1.0
+                }
+            }
+        },
+        "fold_2": {
+            "youden": {
+                "threshold": 0.9370318651199341,
+                "metrics": {
+                    "sensitivity": 0.375,
+                    "specificity": 1.0,
+                    "youden_j": 0.375,
+                    "threshold": 0.9370318651199341,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 5,
+                    "true_positives": 3,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.6153846153846154
+                }
+            },
+            "f1": {
+                "threshold": 0.8038214445114136,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.375,
+                    "f1_score": 0.7619047619047619,
+                    "threshold": 0.8038214445114136,
+                    "true_negatives": 3,
+                    "false_positives": 5,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.6153846153846154,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.9370318651199341,
+                "metrics": {
+                    "sensitivity": 0.375,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 0.6875,
+                    "threshold": 0.9370318651199341,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 5,
+                    "true_positives": 3,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.6153846153846154
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.8641507029533386,
+                "metrics": {
+                    "sensitivity": 0.75,
+                    "specificity": 0.625,
+                    "target_met": true,
+                    "threshold": 0.8641507029533386,
+                    "true_negatives": 5,
+                    "false_positives": 3,
+                    "false_negatives": 2,
+                    "true_positives": 6,
+                    "positive_predictive_value": 0.6666666666666666,
+                    "negative_predictive_value": 0.7142857142857143
+                }
+            }
+        },
+        "fold_3": {
+            "youden": {
+                "threshold": 0.8283248543739319,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "youden_j": 0.75,
+                    "threshold": 0.8283248543739319,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            },
+            "f1": {
+                "threshold": 0.8283248543739319,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "f1_score": 0.875,
+                    "threshold": 0.8283248543739319,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            },
+            "balanced": {
+                "threshold": 0.8283248543739319,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "balanced_accuracy": 0.875,
+                    "threshold": 0.8283248543739319,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.8283248543739319,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "target_met": true,
+                    "threshold": 0.8283248543739319,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            }
+        },
+        "fold_4": {
+            "youden": {
+                "threshold": 0.7888965606689453,
+                "metrics": {
+                    "sensitivity": 0.75,
+                    "specificity": 0.75,
+                    "youden_j": 0.5,
+                    "threshold": 0.7888965606689453,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 2,
+                    "true_positives": 6,
+                    "positive_predictive_value": 0.75,
+                    "negative_predictive_value": 0.75
+                }
+            },
+            "f1": {
+                "threshold": 0.5120120644569397,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.375,
+                    "f1_score": 0.7619047619047619,
+                    "threshold": 0.5120120644569397,
+                    "true_negatives": 3,
+                    "false_positives": 5,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.6153846153846154,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.7888965606689453,
+                "metrics": {
+                    "sensitivity": 0.75,
+                    "specificity": 0.75,
+                    "balanced_accuracy": 0.75,
+                    "threshold": 0.7888965606689453,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 2,
+                    "true_positives": 6,
+                    "positive_predictive_value": 0.75,
+                    "negative_predictive_value": 0.75
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.7888965606689453,
+                "metrics": {
+                    "sensitivity": 0.75,
+                    "specificity": 0.75,
+                    "target_met": true,
+                    "threshold": 0.7888965606689453,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 2,
+                    "true_positives": 6,
+                    "positive_predictive_value": 0.75,
+                    "negative_predictive_value": 0.75
+                }
+            }
+        },
+        "fold_5": {
+            "youden": {
+                "threshold": 0.8084851503372192,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "youden_j": 0.75,
+                    "threshold": 0.8084851503372192,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            },
+            "f1": {
+                "threshold": 0.8084851503372192,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "f1_score": 0.875,
+                    "threshold": 0.8084851503372192,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            },
+            "balanced": {
+                "threshold": 0.8084851503372192,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "balanced_accuracy": 0.875,
+                    "threshold": 0.8084851503372192,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.8084851503372192,
+                "metrics": {
+                    "sensitivity": 0.875,
+                    "specificity": 0.875,
+                    "target_met": true,
+                    "threshold": 0.8084851503372192,
+                    "true_negatives": 7,
+                    "false_positives": 1,
+                    "false_negatives": 1,
+                    "true_positives": 7,
+                    "positive_predictive_value": 0.875,
+                    "negative_predictive_value": 0.875
+                }
+            }
+        }
+    },
+    "densenet121": {
+        "fold_1": {
+            "youden": {
+                "threshold": 0.32087093591690063,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.25,
+                    "youden_j": 0.25,
+                    "threshold": 0.32087093591690063,
+                    "true_negatives": 2,
+                    "false_positives": 6,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.5714285714285714,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "f1": {
+                "threshold": 0.32087093591690063,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.25,
+                    "f1_score": 0.7272727272727273,
+                    "threshold": 0.32087093591690063,
+                    "true_negatives": 2,
+                    "false_positives": 6,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.5714285714285714,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.32087093591690063,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.25,
+                    "balanced_accuracy": 0.625,
+                    "threshold": 0.32087093591690063,
+                    "true_negatives": 2,
+                    "false_positives": 6,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.5714285714285714,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.36209559440612793,
+                "metrics": {
+                    "sensitivity": 0.375,
+                    "specificity": 0.75,
+                    "target_met": true,
+                    "threshold": 0.36209559440612793,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 5,
+                    "true_positives": 3,
+                    "positive_predictive_value": 0.6,
+                    "negative_predictive_value": 0.5454545454545454
+                }
+            }
+        },
+        "fold_2": {
+            "youden": {
+                "threshold": Infinity,
+                "metrics": {
+                    "sensitivity": 0.0,
+                    "specificity": 1.0,
+                    "youden_j": 0.0,
+                    "threshold": Infinity,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 8,
+                    "true_positives": 0,
+                    "positive_predictive_value": 0,
+                    "negative_predictive_value": 0.5
+                }
+            },
+            "f1": {
+                "threshold": 0.37289419770240784,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.0,
+                    "f1_score": 0.6666666666666666,
+                    "threshold": 0.37289419770240784,
+                    "true_negatives": 0,
+                    "false_positives": 8,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.5,
+                    "negative_predictive_value": 0
+                }
+            },
+            "balanced": {
+                "threshold": Infinity,
+                "metrics": {
+                    "sensitivity": 0.0,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 0.5,
+                    "threshold": Infinity,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 8,
+                    "true_positives": 0,
+                    "positive_predictive_value": 0,
+                    "negative_predictive_value": 0.5
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.4848710298538208,
+                "metrics": {
+                    "sensitivity": 0.25,
+                    "specificity": 0.75,
+                    "target_met": true,
+                    "threshold": 0.4848710298538208,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 6,
+                    "true_positives": 2,
+                    "positive_predictive_value": 0.5,
+                    "negative_predictive_value": 0.5
+                }
+            }
+        },
+        "fold_3": {
+            "youden": {
+                "threshold": Infinity,
+                "metrics": {
+                    "sensitivity": 0.0,
+                    "specificity": 1.0,
+                    "youden_j": 0.0,
+                    "threshold": Infinity,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 8,
+                    "true_positives": 0,
+                    "positive_predictive_value": 0,
+                    "negative_predictive_value": 0.5
+                }
+            },
+            "f1": {
+                "threshold": 0.15272127091884613,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.0,
+                    "f1_score": 0.6666666666666666,
+                    "threshold": 0.15272127091884613,
+                    "true_negatives": 0,
+                    "false_positives": 8,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.5,
+                    "negative_predictive_value": 0
+                }
+            },
+            "balanced": {
+                "threshold": Infinity,
+                "metrics": {
+                    "sensitivity": 0.0,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 0.5,
+                    "threshold": Infinity,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 8,
+                    "true_positives": 0,
+                    "positive_predictive_value": 0,
+                    "negative_predictive_value": 0.5
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.272759348154068,
+                "metrics": {
+                    "sensitivity": 0.125,
+                    "specificity": 0.75,
+                    "target_met": true,
+                    "threshold": 0.272759348154068,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 7,
+                    "true_positives": 1,
+                    "positive_predictive_value": 0.3333333333333333,
+                    "negative_predictive_value": 0.46153846153846156
+                }
+            }
+        },
+        "fold_4": {
+            "youden": {
+                "threshold": 0.6133434176445007,
+                "metrics": {
+                    "sensitivity": 0.5,
+                    "specificity": 0.75,
+                    "youden_j": 0.25,
+                    "threshold": 0.6133434176445007,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 4,
+                    "true_positives": 4,
+                    "positive_predictive_value": 0.6666666666666666,
+                    "negative_predictive_value": 0.6
+                }
+            },
+            "f1": {
+                "threshold": 0.3006242513656616,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.0,
+                    "f1_score": 0.6666666666666666,
+                    "threshold": 0.3006242513656616,
+                    "true_negatives": 0,
+                    "false_positives": 8,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.5,
+                    "negative_predictive_value": 0
+                }
+            },
+            "balanced": {
+                "threshold": 0.6133434176445007,
+                "metrics": {
+                    "sensitivity": 0.5,
+                    "specificity": 0.75,
+                    "balanced_accuracy": 0.625,
+                    "threshold": 0.6133434176445007,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 4,
+                    "true_positives": 4,
+                    "positive_predictive_value": 0.6666666666666666,
+                    "negative_predictive_value": 0.6
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.6133434176445007,
+                "metrics": {
+                    "sensitivity": 0.5,
+                    "specificity": 0.75,
+                    "target_met": true,
+                    "threshold": 0.6133434176445007,
+                    "true_negatives": 6,
+                    "false_positives": 2,
+                    "false_negatives": 4,
+                    "true_positives": 4,
+                    "positive_predictive_value": 0.6666666666666666,
+                    "negative_predictive_value": 0.6
+                }
+            }
+        },
+        "fold_5": {
+            "youden": {
+                "threshold": 0.9999929666519165,
+                "metrics": {
+                    "sensitivity": 0.125,
+                    "specificity": 1.0,
+                    "youden_j": 0.125,
+                    "threshold": 0.9999929666519165,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 7,
+                    "true_positives": 1,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.5333333333333333
+                }
+            },
+            "f1": {
+                "threshold": 0.4860987365245819,
+                "metrics": {
+                    "sensitivity": 1.0,
+                    "specificity": 0.125,
+                    "f1_score": 0.6956521739130435,
+                    "threshold": 0.4860987365245819,
+                    "true_negatives": 1,
+                    "false_positives": 7,
+                    "false_negatives": 0,
+                    "true_positives": 8,
+                    "positive_predictive_value": 0.5333333333333333,
+                    "negative_predictive_value": 1.0
+                }
+            },
+            "balanced": {
+                "threshold": 0.9999929666519165,
+                "metrics": {
+                    "sensitivity": 0.125,
+                    "specificity": 1.0,
+                    "balanced_accuracy": 0.5625,
+                    "threshold": 0.9999929666519165,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 7,
+                    "true_positives": 1,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.5333333333333333
+                }
+            },
+            "target_specificity": {
+                "threshold": 0.9999929666519165,
+                "metrics": {
+                    "sensitivity": 0.125,
+                    "specificity": 1.0,
+                    "target_met": true,
+                    "threshold": 0.9999929666519165,
+                    "true_negatives": 8,
+                    "false_positives": 0,
+                    "false_negatives": 7,
+                    "true_positives": 1,
+                    "positive_predictive_value": 1.0,
+                    "negative_predictive_value": 0.5333333333333333
+                }
+            }
+        }
+    }
+}
