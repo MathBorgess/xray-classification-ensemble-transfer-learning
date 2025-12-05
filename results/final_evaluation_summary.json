@@ -1,0 +1,1007 @@
+{
+    "efficientnet_b0_fold1": {
+        "base_metrics": {
+            "loss": 0.6000990256285056,
+            "accuracy": 0.6650641025641025,
+            "auc": 0.7580429541968005,
+            "f1_score": 0.6948905109489051,
+            "precision": 0.8067796610169492,
+            "recall": 0.6102564102564103,
+            "sensitivity": 0.6102564102564103,
+            "specificity": 0.7564102564102564
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.6000990256285056,
+                "accuracy": 0.6650641025641025,
+                "auc": 0.7580429541968005,
+                "f1_score": 0.6948905109489051,
+                "precision": 0.8067796610169492,
+                "recall": 0.6102564102564103,
+                "sensitivity": 0.6102564102564103,
+                "specificity": 0.7564102564102564
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.6362179487179487,
+                "auc": 0.7863576594345825,
+                "f1_score": 0.6332794830371568
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.6586538461538461,
+                "auc": 0.7853605084374315,
+                "f1_score": 0.6666666666666666
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.7307692307692307,
+                "auc": 0.8247315362699977,
+                "f1_score": 0.7673130193905817
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.6666666666666666,
+                "auc": 0.8059938636861714,
+                "f1_score": 0.6780185758513931
+            },
+            "rotation_5deg": {
+                "accuracy": 0.6730769230769231,
+                "auc": 0.7407516984440061,
+                "f1_score": 0.7182320441988951
+            },
+            "rotation_10deg": {
+                "accuracy": 0.6746794871794872,
+                "auc": 0.7242165242165243,
+                "f1_score": 0.7407407407407407
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.7211538461538461,
+            "auc": 0.7902147709840018,
+            "f1_score": 0.7757731958762887,
+            "precision": 0.7797927461139896,
+            "recall": 0.7717948717948718,
+            "sensitivity": 0.7717948717948718,
+            "specificity": 0.6367521367521367,
+            "true_positives": 301,
+            "true_negatives": 149,
+            "false_positives": 85,
+            "false_negatives": 89
+        }
+    },
+    "efficientnet_b0_fold2": {
+        "base_metrics": {
+            "loss": 0.5557116071383158,
+            "accuracy": 0.7580128205128205,
+            "auc": 0.7976660092044706,
+            "f1_score": 0.8160779537149817,
+            "precision": 0.777262180974478,
+            "recall": 0.8589743589743589,
+            "sensitivity": 0.8589743589743589,
+            "specificity": 0.5897435897435898
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.5557116071383158,
+                "accuracy": 0.7580128205128205,
+                "auc": 0.7976660092044706,
+                "f1_score": 0.8160779537149817,
+                "precision": 0.777262180974478,
+                "recall": 0.8589743589743589,
+                "sensitivity": 0.8589743589743589,
+                "specificity": 0.5897435897435898
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.625,
+                "auc": 0.8570458031996493,
+                "f1_score": 0.59375
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.7211538461538461,
+                "auc": 0.851994301994302,
+                "f1_score": 0.7363636363636363
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.6362179487179487,
+                "auc": 0.7945978522901599,
+                "f1_score": 0.6379585326953748
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.6266025641025641,
+                "auc": 0.8462634231865,
+                "f1_score": 0.6003430531732419
+            },
+            "rotation_5deg": {
+                "accuracy": 0.7467948717948718,
+                "auc": 0.7820731974578128,
+                "f1_score": 0.8105515587529976
+            },
+            "rotation_10deg": {
+                "accuracy": 0.75,
+                "auc": 0.7934144203374973,
+                "f1_score": 0.8133971291866029
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.782051282051282,
+            "auc": 0.8289064212141136,
+            "f1_score": 0.8407494145199064,
+            "precision": 0.7737068965517241,
+            "recall": 0.9205128205128205,
+            "sensitivity": 0.9205128205128205,
+            "specificity": 0.5512820512820513,
+            "true_positives": 359,
+            "true_negatives": 129,
+            "false_positives": 105,
+            "false_negatives": 31
+        }
+    },
+    "efficientnet_b0_fold3": {
+        "base_metrics": {
+            "loss": 0.6988391624047205,
+            "accuracy": 0.5112179487179487,
+            "auc": 0.7311527503835196,
+            "f1_score": 0.43413729128014844,
+            "precision": 0.785234899328859,
+            "recall": 0.3,
+            "sensitivity": 0.3,
+            "specificity": 0.8632478632478633
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.6988391624047205,
+                "accuracy": 0.5112179487179487,
+                "auc": 0.7311527503835196,
+                "f1_score": 0.43413729128014844,
+                "precision": 0.785234899328859,
+                "recall": 0.3,
+                "sensitivity": 0.3,
+                "specificity": 0.8632478632478633
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.4967948717948718,
+                "auc": 0.7755424063116371,
+                "f1_score": 0.3512396694214876
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.5256410256410257,
+                "auc": 0.7561253561253563,
+                "f1_score": 0.42412451361867703
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.5224358974358975,
+                "auc": 0.71841989918913,
+                "f1_score": 0.4247104247104247
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.49198717948717946,
+                "auc": 0.7378150339688802,
+                "f1_score": 0.3490759753593429
+            },
+            "rotation_5deg": {
+                "accuracy": 0.5368589743589743,
+                "auc": 0.6671488056103442,
+                "f1_score": 0.5223140495867769
+            },
+            "rotation_10deg": {
+                "accuracy": 0.5480769230769231,
+                "auc": 0.6024435678281832,
+                "f1_score": 0.5828402366863905
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.5673076923076923,
+            "auc": 0.7610782380013149,
+            "f1_score": 0.5408163265306123,
+            "precision": 0.803030303030303,
+            "recall": 0.4076923076923077,
+            "sensitivity": 0.4076923076923077,
+            "specificity": 0.8333333333333334,
+            "true_positives": 159,
+            "true_negatives": 195,
+            "false_positives": 39,
+            "false_negatives": 231
+        }
+    },
+    "efficientnet_b0_fold4": {
+        "base_metrics": {
+            "loss": 0.4117587667245131,
+            "accuracy": 0.8253205128205128,
+            "auc": 0.9103988603988603,
+            "f1_score": 0.8734030197444832,
+            "precision": 0.7983014861995754,
+            "recall": 0.9641025641025641,
+            "sensitivity": 0.9641025641025641,
+            "specificity": 0.594017094017094
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.4117587667245131,
+                "accuracy": 0.8253205128205128,
+                "auc": 0.9103988603988603,
+                "f1_score": 0.8734030197444832,
+                "precision": 0.7983014861995754,
+                "recall": 0.9641025641025641,
+                "sensitivity": 0.9641025641025641,
+                "specificity": 0.594017094017094
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.7131410256410257,
+                "auc": 0.8654832347140039,
+                "f1_score": 0.8089647812166488
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.7051282051282052,
+                "auc": 0.8632971729125575,
+                "f1_score": 0.8050847457627118
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.6923076923076923,
+                "auc": 0.8229783037475346,
+                "f1_score": 0.8020618556701031
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.7147435897435898,
+                "auc": 0.8580100810870042,
+                "f1_score": 0.8122362869198312
+            },
+            "rotation_5deg": {
+                "accuracy": 0.7387820512820513,
+                "auc": 0.8624260355029586,
+                "f1_score": 0.8241639697950378
+            },
+            "rotation_10deg": {
+                "accuracy": 0.7355769230769231,
+                "auc": 0.7976550515012053,
+                "f1_score": 0.8208469055374593
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.8044871794871795,
+            "auc": 0.9325443786982248,
+            "f1_score": 0.8626126126126126,
+            "precision": 0.7690763052208835,
+            "recall": 0.982051282051282,
+            "sensitivity": 0.982051282051282,
+            "specificity": 0.5085470085470085,
+            "true_positives": 383,
+            "true_negatives": 119,
+            "false_positives": 115,
+            "false_negatives": 7
+        }
+    },
+    "efficientnet_b0_fold5": {
+        "base_metrics": {
+            "loss": 0.663867913855192,
+            "accuracy": 0.6810897435897436,
+            "auc": 0.853243480166557,
+            "f1_score": 0.7967313585291114,
+            "precision": 0.6621392190152802,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.14957264957264957
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.663867913855192,
+                "accuracy": 0.6810897435897436,
+                "auc": 0.853243480166557,
+                "f1_score": 0.7967313585291114,
+                "precision": 0.6621392190152802,
+                "recall": 1.0,
+                "sensitivity": 1.0,
+                "specificity": 0.14957264957264957
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.8092948717948718,
+                "auc": 0.8952772298926146,
+                "f1_score": 0.8554070473876063
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.8092948717948718,
+                "auc": 0.8925158886697349,
+                "f1_score": 0.8598351001177856
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.780448717948718,
+                "auc": 0.8493425378040764,
+                "f1_score": 0.8209150326797385
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.7868589743589743,
+                "auc": 0.8689787420556652,
+                "f1_score": 0.8261437908496732
+            },
+            "rotation_5deg": {
+                "accuracy": 0.6410256410256411,
+                "auc": 0.7513313609467456,
+                "f1_score": 0.7768924302788844
+            },
+            "rotation_10deg": {
+                "accuracy": 0.6362179487179487,
+                "auc": 0.7052049090510628,
+                "f1_score": 0.7745779543197616
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.6682692307692307,
+            "auc": 0.8637738330046023,
+            "f1_score": 0.790273556231003,
+            "precision": 0.6532663316582915,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.11538461538461539,
+            "true_positives": 390,
+            "true_negatives": 27,
+            "false_positives": 207,
+            "false_negatives": 0
+        }
+    },
+    "resnet50_fold1": {
+        "base_metrics": {
+            "loss": 0.8268775512010623,
+            "accuracy": 0.6346153846153846,
+            "auc": 0.7630506245890862,
+            "f1_score": 0.7738095238095238,
+            "precision": 0.6310679611650486,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.02564102564102564
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.8268775512010623,
+                "accuracy": 0.6346153846153846,
+                "auc": 0.7630506245890862,
+                "f1_score": 0.7738095238095238,
+                "precision": 0.6310679611650486,
+                "recall": 1.0,
+                "sensitivity": 1.0,
+                "specificity": 0.02564102564102564
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.6971153846153846,
+                "auc": 0.7396559281174665,
+                "f1_score": 0.7952329360780065
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.6762820512820513,
+                "auc": 0.734155161078238,
+                "f1_score": 0.7900207900207901
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.7099358974358975,
+                "auc": 0.6849769888231427,
+                "f1_score": 0.7734668335419274
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.7019230769230769,
+                "auc": 0.7015012053473593,
+                "f1_score": 0.7801418439716312
+            },
+            "rotation_5deg": {
+                "accuracy": 0.625,
+                "auc": 0.6870151216305063,
+                "f1_score": 0.7692307692307693
+            },
+            "rotation_10deg": {
+                "accuracy": 0.625,
+                "auc": 0.6612864343633573,
+                "f1_score": 0.7692307692307693
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.6282051282051282,
+            "auc": 0.766589962743809,
+            "f1_score": 0.7707509881422925,
+            "precision": 0.6270096463022508,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.008547008547008548,
+            "true_positives": 390,
+            "true_negatives": 2,
+            "false_positives": 232,
+            "false_negatives": 0
+        }
+    },
+    "resnet50_fold2": {
+        "base_metrics": {
+            "loss": 1.0506081263988445,
+            "accuracy": 0.625,
+            "auc": 0.48025421871575724,
+            "f1_score": 0.7692307692307693,
+            "precision": 0.625,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.0
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 1.0506081263988445,
+                "accuracy": 0.625,
+                "auc": 0.48025421871575724,
+                "f1_score": 0.7692307692307693,
+                "precision": 0.625,
+                "recall": 1.0,
+                "sensitivity": 1.0,
+                "specificity": 0.0
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.5833333333333334,
+                "auc": 0.5629739206662283,
+                "f1_score": 0.70917225950783
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.5849358974358975,
+                "auc": 0.571718167872014,
+                "f1_score": 0.7131782945736435
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.46955128205128205,
+                "auc": 0.48773833004602235,
+                "f1_score": 0.5291607396870555
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.5432692307692307,
+                "auc": 0.4946855139162832,
+                "f1_score": 0.6459627329192547
+            },
+            "rotation_5deg": {
+                "accuracy": 0.625,
+                "auc": 0.4348783694937541,
+                "f1_score": 0.7692307692307693
+            },
+            "rotation_10deg": {
+                "accuracy": 0.625,
+                "auc": 0.3781612973920666,
+                "f1_score": 0.7692307692307693
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.625,
+            "auc": 0.48154722770107383,
+            "f1_score": 0.7692307692307693,
+            "precision": 0.625,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.0,
+            "true_positives": 390,
+            "true_negatives": 0,
+            "false_positives": 234,
+            "false_negatives": 0
+        }
+    },
+    "resnet50_fold3": {
+        "base_metrics": {
+            "loss": 0.8797562750868309,
+            "accuracy": 0.6298076923076923,
+            "auc": 0.6596975673898751,
+            "f1_score": 0.771513353115727,
+            "precision": 0.6280193236714976,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.01282051282051282
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.8797562750868309,
+                "accuracy": 0.6298076923076923,
+                "auc": 0.6596975673898751,
+                "f1_score": 0.771513353115727,
+                "precision": 0.6280193236714976,
+                "recall": 1.0,
+                "sensitivity": 1.0,
+                "specificity": 0.01282051282051282
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.7099358974358975,
+                "auc": 0.7299364453210607,
+                "f1_score": 0.7897793263646922
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.7067307692307693,
+                "auc": 0.7337935568704801,
+                "f1_score": 0.7991218441273326
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.49038461538461536,
+                "auc": 0.6246986631602016,
+                "f1_score": 0.43617021276595747
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.6073717948717948,
+                "auc": 0.6530900723208415,
+                "f1_score": 0.6702557200538358
+            },
+            "rotation_5deg": {
+                "accuracy": 0.6298076923076923,
+                "auc": 0.624621959237344,
+                "f1_score": 0.771513353115727
+            },
+            "rotation_10deg": {
+                "accuracy": 0.6330128205128205,
+                "auc": 0.5683322375630069,
+                "f1_score": 0.7730426164519326
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.625,
+            "auc": 0.6627218934911243,
+            "f1_score": 0.7692307692307693,
+            "precision": 0.625,
+            "recall": 1.0,
+            "sensitivity": 1.0,
+            "specificity": 0.0,
+            "true_positives": 390,
+            "true_negatives": 0,
+            "false_positives": 234,
+            "false_negatives": 0
+        }
+    },
+    "resnet50_fold4": {
+        "base_metrics": {
+            "loss": 0.8480141181976367,
+            "accuracy": 0.655448717948718,
+            "auc": 0.5370808678500987,
+            "f1_score": 0.7817258883248731,
+            "precision": 0.6470588235294118,
+            "recall": 0.9871794871794872,
+            "sensitivity": 0.9871794871794872,
+            "specificity": 0.10256410256410256
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.8480141181976367,
+                "accuracy": 0.655448717948718,
+                "auc": 0.5370808678500987,
+                "f1_score": 0.7817258883248731,
+                "precision": 0.6470588235294118,
+                "recall": 0.9871794871794872,
+                "sensitivity": 0.9871794871794872,
+                "specificity": 0.10256410256410256
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.7740384615384616,
+                "auc": 0.8302651764190225,
+                "f1_score": 0.8194622279129321
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.7612179487179487,
+                "auc": 0.8069690992767916,
+                "f1_score": 0.8202653799758746
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.7740384615384616,
+                "auc": 0.853407845715538,
+                "f1_score": 0.8044382801664355
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.7772435897435898,
+                "auc": 0.8511286434363358,
+                "f1_score": 0.8134228187919463
+            },
+            "rotation_5deg": {
+                "accuracy": 0.6410256410256411,
+                "auc": 0.5048542625465702,
+                "f1_score": 0.7755511022044088
+            },
+            "rotation_10deg": {
+                "accuracy": 0.6426282051282052,
+                "auc": 0.45968660968660974,
+                "f1_score": 0.7763289869608826
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.6346153846153846,
+            "auc": 0.5330539119000657,
+            "f1_score": 0.7733598409542743,
+            "precision": 0.6314935064935064,
+            "recall": 0.9974358974358974,
+            "sensitivity": 0.9974358974358974,
+            "specificity": 0.029914529914529916,
+            "true_positives": 389,
+            "true_negatives": 7,
+            "false_positives": 227,
+            "false_negatives": 1
+        }
+    },
+    "resnet50_fold5": {
+        "base_metrics": {
+            "loss": 0.7373119821915259,
+            "accuracy": 0.6314102564102564,
+            "auc": 0.5635108481262328,
+            "f1_score": 0.7690763052208835,
+            "precision": 0.6320132013201321,
+            "recall": 0.982051282051282,
+            "sensitivity": 0.982051282051282,
+            "specificity": 0.04700854700854701
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.7373119821915259,
+                "accuracy": 0.6314102564102564,
+                "auc": 0.5635108481262328,
+                "f1_score": 0.7690763052208835,
+                "precision": 0.6320132013201321,
+                "recall": 0.982051282051282,
+                "sensitivity": 0.982051282051282,
+                "specificity": 0.04700854700854701
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.719551282051282,
+                "auc": 0.7796734604426913,
+                "f1_score": 0.7976878612716763
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.6875,
+                "auc": 0.7483453868069252,
+                "f1_score": 0.7864184008762322
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.6266025641025641,
+                "auc": 0.7576813499890424,
+                "f1_score": 0.6409861325115562
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.6746794871794872,
+                "auc": 0.7333442910365988,
+                "f1_score": 0.72751677852349
+            },
+            "rotation_5deg": {
+                "accuracy": 0.6233974358974359,
+                "auc": 0.5188582073197459,
+                "f1_score": 0.7670961347869177
+            },
+            "rotation_10deg": {
+                "accuracy": 0.6282051282051282,
+                "auc": 0.4808678500986193,
+                "f1_score": 0.7702970297029703
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.6298076923076923,
+            "auc": 0.5808459346920885,
+            "f1_score": 0.7701492537313432,
+            "precision": 0.6292682926829268,
+            "recall": 0.9923076923076923,
+            "sensitivity": 0.9923076923076923,
+            "specificity": 0.02564102564102564,
+            "true_positives": 387,
+            "true_negatives": 6,
+            "false_positives": 228,
+            "false_negatives": 3
+        }
+    },
+    "densenet121_fold1": {
+        "base_metrics": {
+            "loss": 0.8149579641146537,
+            "accuracy": 0.3958333333333333,
+            "auc": 0.6234823580977428,
+            "f1_score": 0.0691358024691358,
+            "precision": 0.9333333333333333,
+            "recall": 0.035897435897435895,
+            "sensitivity": 0.035897435897435895,
+            "specificity": 0.9957264957264957
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.8149579641146537,
+                "accuracy": 0.3958333333333333,
+                "auc": 0.6234823580977428,
+                "f1_score": 0.0691358024691358,
+                "precision": 0.9333333333333333,
+                "recall": 0.035897435897435895,
+                "sensitivity": 0.035897435897435895,
+                "specificity": 0.9957264957264957
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.375,
+                "auc": 0.49404996712689025,
+                "f1_score": 0.0
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.375,
+                "auc": 0.5083716852947622,
+                "f1_score": 0.0
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.375,
+                "auc": 0.5317554240631164,
+                "f1_score": 0.0
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.375,
+                "auc": 0.5313719044488275,
+                "f1_score": 0.0
+            },
+            "rotation_5deg": {
+                "accuracy": 0.39903846153846156,
+                "auc": 0.5932719701950472,
+                "f1_score": 0.11347517730496454
+            },
+            "rotation_10deg": {
+                "accuracy": 0.39903846153846156,
+                "auc": 0.49635108481262324,
+                "f1_score": 0.2138364779874214
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.391025641025641,
+            "auc": 0.6782380013149243,
+            "f1_score": 0.05472636815920398,
+            "precision": 0.9166666666666666,
+            "recall": 0.028205128205128206,
+            "sensitivity": 0.028205128205128206,
+            "specificity": 0.9957264957264957,
+            "true_positives": 11,
+            "true_negatives": 233,
+            "false_positives": 1,
+            "false_negatives": 379
+        }
+    },
+    "densenet121_fold2": {
+        "base_metrics": {
+            "loss": 0.7699091785993332,
+            "accuracy": 0.3926282051282051,
+            "auc": 0.4597742713127329,
+            "f1_score": 0.08674698795180723,
+            "precision": 0.72,
+            "recall": 0.046153846153846156,
+            "sensitivity": 0.046153846153846156,
+            "specificity": 0.9700854700854701
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.7699091785993332,
+                "accuracy": 0.3926282051282051,
+                "auc": 0.4597742713127329,
+                "f1_score": 0.08674698795180723,
+                "precision": 0.72,
+                "recall": 0.046153846153846156,
+                "sensitivity": 0.046153846153846156,
+                "specificity": 0.9700854700854701
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.375,
+                "auc": 0.5169953977646286,
+                "f1_score": 0.0
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.375,
+                "auc": 0.5275805391190006,
+                "f1_score": 0.0
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.3798076923076923,
+                "auc": 0.599474030243261,
+                "f1_score": 0.03007518796992481
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.3766025641025641,
+                "auc": 0.5789173789173789,
+                "f1_score": 0.010178117048346057
+            },
+            "rotation_5deg": {
+                "accuracy": 0.38782051282051283,
+                "auc": 0.4371685294762218,
+                "f1_score": 0.10328638497652583
+            },
+            "rotation_10deg": {
+                "accuracy": 0.38301282051282054,
+                "auc": 0.41304514573745343,
+                "f1_score": 0.11085450346420324
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.41346153846153844,
+            "auc": 0.5539666885820732,
+            "f1_score": 0.14883720930232558,
+            "precision": 0.8,
+            "recall": 0.08205128205128205,
+            "sensitivity": 0.08205128205128205,
+            "specificity": 0.9658119658119658,
+            "true_positives": 32,
+            "true_negatives": 226,
+            "false_positives": 8,
+            "false_negatives": 358
+        }
+    },
+    "densenet121_fold3": {
+        "base_metrics": {
+            "loss": 0.9936216213764288,
+            "accuracy": 0.3766025641025641,
+            "auc": 0.32504930966469425,
+            "f1_score": 0.005115089514066497,
+            "precision": 1.0,
+            "recall": 0.002564102564102564,
+            "sensitivity": 0.002564102564102564,
+            "specificity": 1.0
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.9936216213764288,
+                "accuracy": 0.3766025641025641,
+                "auc": 0.32504930966469425,
+                "f1_score": 0.005115089514066497,
+                "precision": 1.0,
+                "recall": 0.002564102564102564,
+                "sensitivity": 0.002564102564102564,
+                "specificity": 1.0
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.375,
+                "auc": 0.4584922200306816,
+                "f1_score": 0.0
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.375,
+                "auc": 0.49795090948937104,
+                "f1_score": 0.0
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.375,
+                "auc": 0.5602892833662064,
+                "f1_score": 0.0
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.375,
+                "auc": 0.500306815691431,
+                "f1_score": 0.0
+            },
+            "rotation_5deg": {
+                "accuracy": 0.3766025641025641,
+                "auc": 0.31919789612097305,
+                "f1_score": 0.005115089514066497
+            },
+            "rotation_10deg": {
+                "accuracy": 0.3766025641025641,
+                "auc": 0.31377383300460227,
+                "f1_score": 0.010178117048346057
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.3782051282051282,
+            "auc": 0.3344071882533421,
+            "f1_score": 0.01020408163265306,
+            "precision": 1.0,
+            "recall": 0.005128205128205128,
+            "sensitivity": 0.005128205128205128,
+            "specificity": 1.0,
+            "true_positives": 2,
+            "true_negatives": 234,
+            "false_positives": 0,
+            "false_negatives": 388
+        }
+    },
+    "densenet121_fold4": {
+        "base_metrics": {
+            "loss": 0.7367040958160009,
+            "accuracy": 0.4935897435897436,
+            "auc": 0.5603769449923296,
+            "f1_score": 0.4886731391585761,
+            "precision": 0.6622807017543859,
+            "recall": 0.3871794871794872,
+            "sensitivity": 0.3871794871794872,
+            "specificity": 0.6709401709401709
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 0.7367040958160009,
+                "accuracy": 0.4935897435897436,
+                "auc": 0.5603769449923296,
+                "f1_score": 0.4886731391585761,
+                "precision": 0.6622807017543859,
+                "recall": 0.3871794871794872,
+                "sensitivity": 0.3871794871794872,
+                "specificity": 0.6709401709401709
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.375,
+                "auc": 0.7267806267806267,
+                "f1_score": 0.0
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.375,
+                "auc": 0.7214003944773176,
+                "f1_score": 0.0
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.375,
+                "auc": 0.7824676747753672,
+                "f1_score": 0.0
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.375,
+                "auc": 0.7679158448389218,
+                "f1_score": 0.0
+            },
+            "rotation_5deg": {
+                "accuracy": 0.49198717948717946,
+                "auc": 0.4749506903353057,
+                "f1_score": 0.592020592020592
+            },
+            "rotation_10deg": {
+                "accuracy": 0.4967948717948718,
+                "auc": 0.4199649353495507,
+                "f1_score": 0.6225961538461539
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.5352564102564102,
+            "auc": 0.5759368836291913,
+            "f1_score": 0.5845272206303725,
+            "precision": 0.6623376623376623,
+            "recall": 0.5230769230769231,
+            "sensitivity": 0.5230769230769231,
+            "specificity": 0.5555555555555556,
+            "true_positives": 204,
+            "true_negatives": 130,
+            "false_positives": 104,
+            "false_negatives": 186
+        }
+    },
+    "densenet121_fold5": {
+        "base_metrics": {
+            "loss": 1.170624812444051,
+            "accuracy": 0.5464743589743589,
+            "auc": 0.46137409598948065,
+            "f1_score": 0.6823793490460157,
+            "precision": 0.6067864271457086,
+            "recall": 0.7794871794871795,
+            "sensitivity": 0.7794871794871795,
+            "specificity": 0.1581196581196581
+        },
+        "robustness": {
+            "baseline": {
+                "loss": 1.170624812444051,
+                "accuracy": 0.5464743589743589,
+                "auc": 0.46137409598948065,
+                "f1_score": 0.6823793490460157,
+                "precision": 0.6067864271457086,
+                "recall": 0.7794871794871795,
+                "sensitivity": 0.7794871794871795,
+                "specificity": 0.1581196581196581
+            },
+            "gaussian_noise_sigma_10": {
+                "accuracy": 0.38621794871794873,
+                "auc": 0.6271860618014464,
+                "f1_score": 0.03526448362720403
+            },
+            "gaussian_noise_sigma_20": {
+                "accuracy": 0.40064102564102566,
+                "auc": 0.6267148805610345,
+                "f1_score": 0.07881773399014778
+            },
+            "contrast_reduction_50": {
+                "accuracy": 0.3766025641025641,
+                "auc": 0.7480166557089634,
+                "f1_score": 0.005115089514066497
+            },
+            "contrast_reduction_70": {
+                "accuracy": 0.3814102564102564,
+                "auc": 0.6797501643655489,
+                "f1_score": 0.02030456852791878
+            },
+            "rotation_5deg": {
+                "accuracy": 0.5961538461538461,
+                "auc": 0.4248465921542844,
+                "f1_score": 0.7423312883435583
+            },
+            "rotation_10deg": {
+                "accuracy": 0.6009615384615384,
+                "auc": 0.4151654613193075,
+                "f1_score": 0.7477203647416414
+            }
+        },
+        "tta_metrics": {
+            "accuracy": 0.6009615384615384,
+            "auc": 0.4983892176199869,
+            "f1_score": 0.740894901144641,
+            "precision": 0.6234676007005254,
+            "recall": 0.9128205128205128,
+            "sensitivity": 0.9128205128205128,
+            "specificity": 0.0811965811965812,
+            "true_positives": 356,
+            "true_negatives": 19,
+            "false_positives": 215,
+            "false_negatives": 34
+        }
+    }
+}

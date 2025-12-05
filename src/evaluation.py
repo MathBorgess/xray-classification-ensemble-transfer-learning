@@ -12,24 +12,23 @@ from sklearn.metrics import (
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-
+# imports adicionais
+import argparse
+import os
+import json
+from pathlib import Path
+from src.utils import load_config, get_device
+from src.models import create_model
+from src.data_loader import load_data_from_directory, ChestXRayDataset, get_transforms
+from torch.utils.data import DataLoader
+from src.trainer import evaluate # importa a função evaluate do trainer
+# Nota: O TTAWrapper será importado dentro da função se use_tta for True.
 
 def compute_confusion_matrix(
     y_true: np.ndarray,
     y_pred: np.ndarray,
     class_names: List[str] = None
 ) -> np.ndarray:
-    """
-    Compute confusion matrix
-
-    Args:
-        y_true: True labels
-        y_pred: Predicted labels
-        class_names: Names of classes
-
-    Returns:
-        Confusion matrix
-    """
     if class_names is None:
         class_names = ['Normal', 'Pneumonia']
 
@@ -44,11 +43,6 @@ def plot_confusion_matrix(
 ):
     """
     Plot confusion matrix
-
-    Args:
-        cm: Confusion matrix
-        class_names: Names of classes
-        save_path: Path to save figure
     """
     if class_names is None:
         class_names = ['Normal', 'Pneumonia']
@@ -75,11 +69,6 @@ def plot_roc_curve(
 ):
     """
     Plot ROC curve
-
-    Args:
-        y_true: True labels
-        y_scores: Predicted probabilities
-        save_path: Path to save figure
     """
     fpr, tpr, _ = roc_curve(y_true, y_scores)
     roc_auc = auc(fpr, tpr)
@@ -108,11 +97,6 @@ def plot_precision_recall_curve(
 ):
     """
     Plot Precision-Recall curve
-
-    Args:
-        y_true: True labels
-        y_scores: Predicted probabilities
-        save_path: Path to save figure
     """
     precision, recall, _ = precision_recall_curve(y_true, y_scores)
     pr_auc = auc(recall, precision)
@@ -138,11 +122,6 @@ def compare_models(
 ):
     """
     Compare multiple models on a metric
-
-    Args:
-        results: Dictionary of model results
-        metric: Metric to compare
-        save_path: Path to save figure
     """
     models = list(results.keys())
     scores = [results[model][metric] for model in models]
@@ -150,7 +129,7 @@ def compare_models(
     plt.figure(figsize=(10, 6))
     bars = plt.bar(models, scores, color='steelblue', alpha=0.7)
 
-    # Add value labels on bars
+    # add value labels on bars
     for bar in bars:
         height = bar.get_height()
         plt.text(bar.get_x() + bar.get_width()/2., height,
@@ -176,14 +155,6 @@ def paired_t_test(
 ) -> Tuple[float, float, bool]:
     """
     Perform paired t-test
-
-    Args:
-        scores_a: Scores from model A
-        scores_b: Scores from model B
-        alpha: Significance level
-
-    Returns:
-        Tuple of (t_statistic, p_value, is_significant)
     """
     t_stat, p_value = stats.ttest_rel(scores_a, scores_b)
     is_significant = p_value < alpha
@@ -197,13 +168,6 @@ def apply_gaussian_noise(
 ) -> torch.Tensor:
     """
     Apply Gaussian noise to images
-
-    Args:
-        images: Input images
-        sigma: Standard deviation of noise
-
-    Returns:
-        Noisy images
     """
     noise = torch.randn_like(images) * (sigma / 255.0)
     noisy_images = images + noise
@@ -216,13 +180,6 @@ def apply_contrast_reduction(
 ) -> torch.Tensor:
     """
     Reduce contrast of images
-
-    Args:
-        images: Input images
-        level: Contrast reduction level (0.5 = 50% reduction)
-
-    Returns:
-        Images with reduced contrast
     """
     mean = images.mean(dim=(2, 3), keepdim=True)
     contrast_reduced = mean + level * (images - mean)
@@ -235,13 +192,6 @@ def apply_rotation(
 ) -> torch.Tensor:
     """
     Apply rotation to images
-
-    Args:
-        images: Input images
-        angle: Rotation angle in degrees
-
-    Returns:
-        Rotated images
     """
     from torchvision.transforms.functional import rotate
     return rotate(images, angle)
@@ -255,15 +205,6 @@ def test_robustness(
 ) -> Dict[str, Dict[str, float]]:
     """
     Test model robustness under perturbations
-
-    Args:
-        model: PyTorch model
-        test_loader: Test data loader
-        config: Configuration dictionary
-        device: Device to test on
-
-    Returns:
-        Dictionary of robustness metrics
     """
     from src.trainer import evaluate
 
@@ -273,27 +214,27 @@ def test_robustness(
     results = {}
     criterion = torch.nn.CrossEntropyLoss()
 
-    # Baseline (no perturbation)
+    # baseline (no perturbation)
     print("\nTesting baseline (no perturbation)...")
     baseline_metrics = evaluate(model, test_loader, criterion, device)
     results['baseline'] = baseline_metrics
 
-    # Gaussian noise
+    # gaussian noise
     if 'gaussian_noise' in perturbations_config:
         sigmas = perturbations_config['gaussian_noise'].get('sigma', [10, 20])
         for sigma in sigmas:
             print(f"\nTesting Gaussian noise (sigma={sigma})...")
-            # Create perturbed dataset
+            # create perturbed dataset
             perturbed_metrics = test_with_perturbation(
                 model, test_loader, device, criterion,
                 perturbation_fn=lambda x: apply_gaussian_noise(x, sigma)
             )
             results[f'gaussian_noise_sigma_{sigma}'] = perturbed_metrics
 
-    # Contrast reduction
+    # contrast reduction
     if 'contrast_reduction' in perturbations_config:
         levels = perturbations_config['contrast_reduction'].get('levels', [
-                                                                0.5, 0.7])
+                                                             0.5, 0.7])
         for level in levels:
             print(f"\nTesting contrast reduction (level={level})...")
             perturbed_metrics = test_with_perturbation(
@@ -302,7 +243,7 @@ def test_robustness(
             )
             results[f'contrast_reduction_{int(level*100)}'] = perturbed_metrics
 
-    # Rotation
+    # rotation
     if 'rotation' in perturbations_config:
         angles = perturbations_config['rotation'].get('angles', [5, 10])
         for angle in angles:
@@ -325,16 +266,6 @@ def test_with_perturbation(
 ) -> Dict[str, float]:
     """
     Test model with specific perturbation
-
-    Args:
-        model: PyTorch model
-        data_loader: Data loader
-        device: Device to test on
-        criterion: Loss function
-        perturbation_fn: Function to apply perturbation
-
-    Returns:
-        Dictionary of metrics
     """
     from src.trainer import evaluate
     from sklearn.metrics import accuracy_score, roc_auc_score, f1_score
@@ -348,10 +279,10 @@ def test_with_perturbation(
         for inputs, labels in data_loader:
             inputs, labels = inputs.to(device), labels.to(device)
 
-            # Apply perturbation
+            # apply perturbation
             inputs = perturbation_fn(inputs)
 
-            # Forward pass
+            # forward pass
             outputs = model(inputs)
             probs = torch.softmax(outputs, dim=1)
             _, preds = torch.max(outputs, 1)
@@ -360,7 +291,7 @@ def test_with_perturbation(
             all_labels.extend(labels.cpu().numpy())
             all_probs.extend(probs[:, 1].cpu().numpy())
 
-    # Calculate metrics
+    # calculate metrics
     accuracy = accuracy_score(all_labels, all_preds)
     try:
         auc_score = roc_auc_score(all_labels, all_probs)
@@ -373,3 +304,126 @@ def test_with_perturbation(
         'auc': auc_score,
         'f1_score': f1
     }
+
+
+# main code
+def run_final_evaluation(config: Dict, use_tta: bool = False):
+    """
+    carrega modelos e executa a avaliação final (Ensemble, TTA, Robustez).
+    """
+    device = get_device(config)
+    save_dir = Path(config.get('paths', {}).get('results', 'results/'))
+    
+    # carregar o test set
+    data_dir = config.get('data', {}).get('data_dir', 'data/raw/chest_xray')
+    test_dir = os.path.join(data_dir, 'test')
+
+    print("\nLoading test data for final evaluation...")
+    test_paths, test_labels = load_data_from_directory(test_dir, config)
+    test_transform = get_transforms(config, train=False)
+    
+    test_dataset = ChestXRayDataset(test_paths, test_labels, transform=test_transform, augmentation=None)
+    
+    batch_size = config.get('data', {}).get('batch_size', 32)
+    
+    # IMPORTANTE: CORREÇÃO DO MULTIPROCESSING NO WINDOWS
+    num_workers = config.get('data', {}).get('num_workers', 4)
+    if os.name == 'nt' and num_workers > 0: 
+        print("AVISO: Multiprocessing desativado (num_workers=0) para evitar travamento no Windows.")
+        num_workers = 0 
+
+    test_loader = DataLoader(
+        test_dataset, batch_size=batch_size,
+        shuffle=False, num_workers=num_workers, pin_memory=True
+    )
+    print(f"Total de amostras de teste carregadas: {len(test_dataset)}")
+
+    # carregar thresholds otimos (necessário para o ensemble)
+    thresholds_path = save_dir / 'optimal_thresholds.json'
+    if not thresholds_path.exists():
+        print(f"❌ ERRO: Arquivo de thresholds não encontrado em {thresholds_path}. Execute o threshold_optimization.py primeiro.")
+        return
+
+    with open(thresholds_path, 'r') as f:
+        optimized_thresholds = json.load(f)
+        
+    final_results = {}
+    models_to_evaluate = ['efficientnet_b0', 'resnet50', 'densenet121']
+
+    # avaliação de desempenho (individual + robustez)
+    for model_name in models_to_evaluate:
+        for fold_num in range(config.get('evaluation', {}).get('n_splits', 5)):
+            fold_index = fold_num + 1
+            print(f"\n--- Avaliando {model_name} Fold {fold_index} ---")
+            
+            checkpoint_path = Path('models/cv_models') / f'{model_name}_fold{fold_index}.pth'
+            if not checkpoint_path.exists():
+                continue
+
+            model = create_model(model_name, config)
+            model.load_state_dict(torch.load(checkpoint_path, map_location=device))
+            model = model.to(device)
+
+            # aval. base e robustez
+            robustness_metrics = test_robustness(
+                model, test_loader, config, device
+            )
+            
+            # avaliação com TTA (se solicitado)
+            tta_metrics = None
+            if use_tta:
+                from src.tta import TTAWrapper # Importa localmente para evitar problemas de dependência
+                tta_wrapper = TTAWrapper(model, config, n_augmentations=5, device=device)
+                tta_metrics = tta_wrapper.evaluate_with_tta(test_loader)
+            
+            final_results[f'{model_name}_fold{fold_index}'] = {
+                'base_metrics': robustness_metrics.get('baseline', {}),
+                'robustness': robustness_metrics,
+                'tta_metrics': tta_metrics
+            }
+
+
+    # salvar
+    final_output_path = save_dir / 'final_evaluation_summary.json'
+    
+    def convert_numpy(obj):
+        if isinstance(obj, float) and (np.isinf(obj) or np.isnan(obj)):
+            return None
+        if isinstance(obj, np.generic):
+            return obj.item()
+        raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
+
+    with open(final_output_path, 'w') as f:
+        json.dump(final_results, f, indent=4, default=convert_numpy)
+    
+    print(f"\nAvaliação Final Concluída e salva em: {final_output_path}")
+
+    # TODO: FASE FINAL: Cálculo do Ensemble (voto ponderado)
+
+    return final_results
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Run Final Model Evaluation')
+    parser.add_argument('--config', type=str, default='configs/config.yaml',
+                        help='Path to config file')
+    parser.add_argument('--use-tta', action='store_true',
+                        help='Use Test-Time Augmentation for final prediction')
+    
+    args = parser.parse_args()
+
+    # define variável OMP para ignorar o erro de MKL/openmp
+    os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
+    
+    config = load_config(args.config)
+
+    # IMPORTANTE: Desativar temporariamente o multiprocessing no Windows
+    # para evitar RuntimeErrors no DataLoader
+    if os.name == 'nt' and config.get('data', {}).get('num_workers', 4) > 0:
+        config['data']['num_workers'] = 0 
+    
+    try:
+        run_final_evaluation(config, use_tta=args.use_tta)
+    except Exception as e:
+        print(f"\n❌ ERRO FATAL DURANTE A AVALIAÇÃO FINAL: {e}")
+        # print(traceback.format_exc()) # Descomente para ver o erro completo
